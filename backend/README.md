@@ -3,7 +3,7 @@ Verwendeter Technologiestack:
 
 - NestJS (backend), 
 - postgres (docker container)
-- Prisma (Datenpersistenz, ORM, ...), 
+- Prisma (Datensynchronisation, ORM, ...), 
 - argon2+passport-jwt (token management), 
 - class-validator (parameter validation) 
 
