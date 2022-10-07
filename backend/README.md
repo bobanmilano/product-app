@@ -23,7 +23,7 @@ in einer linux shell wie z.b. git bash oder auf einem unixbasierten system ausfÃ
 	
 3.) server starten	
 
-	> yarn db:dev
+	> yarn start:dev
 	
 	
 4.) prisma studio starten (optional - es kann auch z.b. PgAdmin verwendet werden)
