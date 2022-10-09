@@ -11,8 +11,6 @@ import { TokenStorageService } from '../services/token-storage.service';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  //static accessToken? = localStorage.getItem('token');
-
   constructor(private tokenService: TokenStorageService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
@@ -20,7 +18,6 @@ export class AuthInterceptor implements HttpInterceptor {
       setHeaders: {
         Authorization: `Bearer ${this.tokenService.getToken()}`
       },
-     // withCredentials: true
     });
   
     return next.handle(req);
