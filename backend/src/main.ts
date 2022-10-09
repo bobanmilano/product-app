@@ -11,6 +11,7 @@ async function bootstrap() {
       whitelist: true, //make sure only the defined parameters (email, password) from the DTO are accepted
     }),
   );
+  app.enableCors();
   await app.listen(3333);
 }
 bootstrap();

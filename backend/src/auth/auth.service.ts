@@ -15,7 +15,7 @@ export class AuthService{
         private config: ConfigService){}
 
     async signup(dto: AuthDto) {
-    
+        console.log("SIGNUP");
         const hash = await argon.hash(dto.password); //create password hash with argon
 
         try {
@@ -25,7 +25,6 @@ export class AuthService{
                     hash,
                 }
             });
-
             return this.jwtToken(user.id, user.email);
         }catch (error) {
             if(error instanceof PrismaClientKnownRequestError) { //handle user already registered error
@@ -35,7 +34,6 @@ export class AuthService{
             }
             throw error;
         }
-       
     }
 
     async signin(dto: AuthDto) {
@@ -44,6 +42,9 @@ export class AuthService{
                 email: dto.email,
             }
         });
+
+        console.log("SIGNIN");
+        console.log(dto);
 
         if(!user) throw new ForbiddenException('Unknown user');
 

@@ -1,0 +1,18 @@
+<app-header></app-header>
+<div class="h-16"></div>
+<div class="w-full flex ...">
+    <div class="flex-1 h-16 ...">
+    </div>
+    <div class="shrink-0 h-16 w-1/2 ...">
+        <div class="mr-0">
+            <app-add-product (onAddProduct)="addProduct($event)"
+                        (onEditProduct)="updateProduct($event)" *ngIf="showAddProduct" [product]="product">
+            </app-add-product>
+        </div>  
+        <app-product-item *ngFor="let product of products" [product]="product" 
+        (onDeleteProduct)="deleteProduct(product)" (onEditProduct)="editProduct(product)" >
+    </app-product-item>
+    </div>
+    <div class="flex-1 h-16 ...">    
+    </div>
+</div>

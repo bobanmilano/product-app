@@ -14,6 +14,8 @@ export class UserController {
 
     @Get('current')
     getCurrentUser(@GetUser() user: User) {
+      console.log("CURRENT USER");
+      console.log(user);
         return user;
     }
  
