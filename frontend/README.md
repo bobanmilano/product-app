@@ -14,9 +14,11 @@ Nach dem Clonen des repos:
 
     > yarn start
 
-3.) Browser starten und http://localhost:4200 aufrufen
+3.) Browser starten und 
 
-4.) Neuen Benutzer anlegen
+  > http://localhost:4200 aufrufen
+
+4.) Neuen Benutzer registrieren und einloggen
 
 5.) Produkte anlegen, bearbeiten, löschen usw
  
