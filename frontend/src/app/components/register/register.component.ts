@@ -27,11 +27,13 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.form = new FormGroup({
       email: new FormControl("", Validators.required),
-      password: new FormControl("", Validators.required)
+      password: new FormControl("", Validators.required),
+      remember: new FormControl("")
     });
   }
 
   register() {
+    this.form.patchValue({remember: true});
     if(this.form.valid) {
       this.authService.signup(this.form).subscribe((response ) => {
           if(response != null) {

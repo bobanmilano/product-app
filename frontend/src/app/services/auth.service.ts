@@ -25,7 +25,8 @@ export class AuthService {
     let password = encodeURIComponent(data.get("password")?.value);
     body.set('email', data.get('email')?.value);
     body.set('password', password);
-
+    body.set('remember', data.get("remember")?.value.toString());
+    
     let options = { headers:  new HttpHeaders({
       "Content-Type": "application/x-www-form-urlencoded"
     }) };
