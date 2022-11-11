@@ -11,21 +11,26 @@ Verwendeter Technologiestack:
 ACHTUNG: migrationsskripte enthalten zum teil unix-commands, daher 
 in einer linux shell wie z.b. git bash oder auf einem unixbasierten system ausführen. 
 
- 1.) docker postgres container starten  
+ 1.) .env file erstellen und umgebungsvariablen setzen
+ 	
+	> cp .env-example .env
+
+
+ 2.) docker postgres container starten  
  
 	> docker compose up product-db -d
 	
 	
-2.) migrationsskripte ausführen
+ 3.) migrationsskripte ausführen
 
 	> yarn db:dev:restart
 	
 	
-3.) server starten	
+ 4.) server starten	
 
 	> yarn start:dev
 	
 	
-4.) prisma studio starten (optional - es kann auch z.b. PgAdmin verwendet werden)
+ 5.) prisma studio starten (optional - es kann auch z.b. PgAdmin verwendet werden)
 	
 	> npx prisma studio
