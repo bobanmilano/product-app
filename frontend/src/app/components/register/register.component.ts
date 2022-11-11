@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
       this.authService.signup(this.form).subscribe((response ) => {
           if(response != null) {
             this.tokenService.saveToken(response.access_token);
-            this.router.navigate(['login'])
+            this.router.navigate(['dashboard'])
           }
       })
     }

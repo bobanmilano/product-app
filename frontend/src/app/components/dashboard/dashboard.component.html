@@ -1,0 +1,26 @@
+<div class="flex flex-row h-screen">
+  <div class="pr-4 basis-2/5">
+    <app-product-search></app-product-search>
+    <app-product-form (newProductEvent)="addNewProduct($event)"></app-product-form>
+  </div>
+  
+  <div class="pl-4 border-l-2 basis-3/5">
+    <div class="flex flex-col">
+      <div>
+        <div class="block w-full p-6" >
+          <div class="p-4 bg-white rounded-lg shadow-md">
+            <h2>Neueste Produkte</h2>
+            <div class="products-menu">
+              <a *ngFor="let product of products" routerLink="/detail/{{product.id}}">
+                {{product.name}}
+              </a>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

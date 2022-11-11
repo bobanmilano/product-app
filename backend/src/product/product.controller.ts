@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { Controller, UseGuards, Get, Post, Patch, Delete, Param, Body, ParseIntPipe } from '@nestjs/common';
+import { Controller, UseGuards, Get, Post, Patch, Delete, Param, Body, ParseIntPipe, ConsoleLogger, ParseFloatPipe, Query } from '@nestjs/common';
 import { GetUser } from 'src/auth/decorator';
 import { JwtGuard } from 'src/auth/guard/jwt.guard';
 import { CreateProductDto, EditProductDto } from './dto';
@@ -13,7 +13,6 @@ export class ProductController {
 
     @Get()
     getProducts(@GetUser('id') userId: number) {
-        console.log("GET PRODUCTS - userId: " + userId);
         return this.productService.getProducts(userId);
     }
 
@@ -25,13 +24,19 @@ export class ProductController {
         return this.productService.getProductById(userId, productId);
     }
 
+    @Get('/search/:name')
+    searchProduct(
+        @GetUser('id') userId: number,     
+        @Param('name') name: string,
+    ){
+        return this.productService.searchProductByName(userId, name);
+    }
+
     @Post()
     createProduct(
         @GetUser('id') userId: number, 
         @Body() dto: CreateProductDto
-    )  {
-        console.log("CREATE PRODUCT ENDPOINT");
-        console.log(dto);
+    ){
         return this.productService.createProduct(userId, dto);
     }
 
@@ -41,9 +46,6 @@ export class ProductController {
         @Param('id', ParseIntPipe) productId: number,
         @Body() dto: EditProductDto
     ){
-        console.log("userid: " + userId);
-        console.log("productId: " + productId);
-        console.log(dto);
         return this.productService.editProductById(userId, productId, dto);
     }
 
@@ -54,4 +56,5 @@ export class ProductController {
     ){
         return this.productService.deleteProductById(userId, productId);
     }
+
 }

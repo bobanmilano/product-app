@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Param, ParseBoolPipe, Post } from '@nestjs/common';
 import { domainToASCII } from 'url';
 import { AuthService } from './auth.service';
 import { AuthDto } from './dto';
@@ -15,8 +15,8 @@ export class AuthController {
   }
 
   @Post('signin')
-  signin(@Body() dto: AuthDto) {       
-    return this.authService.signin(dto);
+  signin(@Body() dto: AuthDto) {
+    return this.authService.signin(dto, (dto.remember == "true"));
   }
 
 }

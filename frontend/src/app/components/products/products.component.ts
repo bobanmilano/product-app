@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductsService } from 'src/app/services/products.service';
-import { UiService } from 'src/app/services/ui.service';
-import { Observable, Subject, Subscription } from 'rxjs';
+import { ProductService } from 'src/app/services/product.service';
+import { MessageService } from 'src/app/services/message.service';
+import { ProductDetailComponent } from '../product-detail/product-detail.component';
+import { ProductDto } from 'src/app/models/dto/create-product-dto';
 import { Product } from 'src/app/models/product';
+import { throwToolbarMixedModesError } from '@angular/material/toolbar';
+import { defaultMaxListeners } from 'events';
 
 @Component({
   selector: 'app-products',
@@ -11,43 +14,46 @@ import { Product } from 'src/app/models/product';
 })
 export class ProductsComponent implements OnInit {
   products: Product[] = [];
-  product?: Product;
-  showAddProduct: boolean = false;
-  subscription: Subscription | undefined;
+  newProduct = {} as Product;
 
-  constructor(private productService: ProductsService, private uiService: UiService) { 
-    this.subscription = this.uiService.onToggle().subscribe((value) => this.showAddProduct = value);
-  }
+  constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.productService.getProducts().subscribe((result) => this.products = result);
+    this.getProducts();
   }
 
-  deleteProduct(product: Product) {
-    this.productService.deleteProduct(product)
-      .subscribe(() => (this.products = this.products.filter(t => t.id !== product.id)));
+  getProducts(): void {
+    this.productService.getProducts()
+        .subscribe(result => this.products = result);
   }
 
-  editProduct(product: Product) {    
-    this.product = product;    
-    this.showAddProduct = true;
-  }
-  
-  addProduct(product: Product) {
-    this.productService.addProduct(product).subscribe((product) => {
-      this.products.push(product);
-      location.reload();
-    });
+  delete(product: Product) {
+    this.products = this.products.filter(h => h !== product);
+    this.productService.deleteProduct(product.id).subscribe();
   }
 
-  updateProduct(product: Product) {
-    this.productService.updateProduct(product).subscribe((product) => {
-      const indexOfProduct = this.products.findIndex(
-        (item) => item.id === product.id
-      )
-      this.products[indexOfProduct] = product;
+  add(): void {
+    if (!this.newProduct) { return; }
 
-    });
+    let product: ProductDto  = {
+      name: this.newProduct.name,
+      description: this.newProduct.description,
+      category: this.newProduct.category,
+      price: this.newProduct.price,
+      inStock: this.newProduct.inStock
+    }
+
+    this.productService.addProduct(product)
+      .subscribe(product => {
+        this.products.push(product);
+      });
+  }
+
+  getDescription(description: string) {
+    if ( description.length < 100) 
+      return description;
+    
+    return description.slice(0, 100) + " ...";
   }
 
 }

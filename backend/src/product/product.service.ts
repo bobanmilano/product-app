@@ -25,6 +25,19 @@ export class ProductService {
         })
     }
 
+    async searchProductByName(userId: number, searchString: string) {
+        const result = await this.prismaDbService.product.findMany({
+            where: {
+                userId: userId,
+                name: {
+                    contains: searchString,
+                },
+            },
+        });
+
+        return result;
+    }
+
     async createProduct(userId: number, dto: CreateProductDto) {
         const product = await this.prismaDbService.product.create({
             data: {

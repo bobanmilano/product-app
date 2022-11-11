@@ -1,0 +1,30 @@
+<div class="text-white bg-black border-0 accordio" id="accordionExample">
+        <div class="text-white bg-black border-0 accordion-item">
+          <h2 class="py-0 mb-0 text-white bg-black accordion-header" id="headingThree">
+            <button class="relative flex items-center w-full px-5 text-base text-left text-white transition bg-black border-0 rounded-none accordion-button collapsed focus:outline-none" type="button" 
+             data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false"
+              aria-controls="collapseThree">
+              Actionlog
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree">
+            <div class="accordion-body">
+                <div class="h-32 px-4 overflow-y-scroll text-green-600 bg-black">
+                        <div class="h-6 flex flex-row justify-between ...">
+                           <div></div>
+                              <div> 
+                                   <button *ngIf="messageService.messages.length > 0" type="button" class="text-white"
+                                                (click)="messageService.clear()">clear log
+                                   </button>
+                              </div>
+                        </div>
+                        <div class="h-100 max-h-100">
+                           <div  *ngFor='let message of messageService.messages.reverse()'> {{message}} </div>
+                        </div>
+                </div>
+            </div>
+          </div>
+        </div>
+</div>
+
+

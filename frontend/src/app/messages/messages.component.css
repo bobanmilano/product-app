@@ -1,0 +1,15 @@
+.accordion-button:not(.collapsed) {
+    color: #fff;
+    background-color: #000;
+    box-shadow: inset 0 -1px 0 #e5e7eb;
+}
+
+.accordion-button::after {
+    background-color: #fff;
+    
+}
+
+button {
+
+    margin-top: 0;
+}

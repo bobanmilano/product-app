@@ -1,18 +1,44 @@
-<app-header></app-header>
-<div class="h-16"></div>
-<div class="w-full flex ...">
-    <div class="flex-1 h-16 ...">
+<section class="overflow-hidden text-gray-700 ">
+  <div class="container px-5 py-2 mx-auto lg:pt-12 lg:px-32">
+    <div *ngIf="products.length === 0">
+      <div class="max-w-lg mx-auto">
+        <div class="flex p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg" role="alert">
+            <svg class="inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+            <div>
+                <span class="font-medium">Info!</span> Sie haben noch keine Produkte angelegt.
+            </div>
+        </div>
+      </div>
+    </div> 
+    <div class="grid grid-flow-row gap-8 text-neutral-600 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div class="flex flex-wrap w-full mb-4" *ngFor="let product of products" >
+        <div class="max-w-lg p-6 bg-white rounded-lg shadow-lg w-120 h-120 p-full md:p-2">
+              <div class="flex flex-col justify-between h-full">
+                <div class="none">
+                  <a routerLink="/detail/{{product.id}}">
+                    <img class="w-full" src="https://v1.tailwindcss.com/img/card-top.jpg" alt="Mountain"/>
+                    <div class="relative block">
+                
+                      <h2 class="mb-2 text-xl font-medium leading-tight text-gray-900">{{product.name}}</h2>
+                      <p class="w-full mb-4 text-sm text-gray-700">
+                          {{ getDescription(product.description) }}
+                      </p>
+                    </div>
+                  </a>
+                </div>
+                <div class="grow"></div>
+                <div class="flex-none">
+                  <div class="flex justify-between w-full pl-4">
+                    <button routerLink="/detail/{{product.id}}" type="button" class="py-0 text-xs font-medium leading-tight text-white uppercase transition duration-150 ease-in-out bg-blue-600 rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg">Details</button>
+                    <button type="button" (click)="delete(product)" class="text-xs font-medium leading-tight text-white uppercase transition duration-150 ease-in-out bg-red-600 rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg">
+                      Löschen
+                    </button>
+                  </div> 
+                </div>
+              </div>  
+        </div>
+      </div>
     </div>
-    <div class="shrink-0 h-16 w-1/2 ...">
-        <div class="mr-0">
-            <app-add-product (onAddProduct)="addProduct($event)"
-                        (onEditProduct)="updateProduct($event)" *ngIf="showAddProduct" [product]="product">
-            </app-add-product>
-        </div>  
-        <app-product-item *ngFor="let product of products" [product]="product" 
-        (onDeleteProduct)="deleteProduct(product)" (onEditProduct)="editProduct(product)" >
-    </app-product-item>
-    </div>
-    <div class="flex-1 h-16 ...">    
-    </div>
-</div>
+  </div>
+</section>
+

@@ -1,0 +1,16 @@
+<div class="block max-w-xl p-6 " >
+  <div class="p-4 bg-white rounded-lg shadow-md">
+<div id="search-component">
+    <label for="search-box">Produktsuche</label>
+    <input #searchBox id="search-box" (input)="search(searchBox.value)" class="border-2"/>
+  
+    <ul class="search-result">
+      <li *ngFor="let product of products$ | async" >
+        <a routerLink="/detail/{{product.id}}">
+          {{product.name}}
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+</div>

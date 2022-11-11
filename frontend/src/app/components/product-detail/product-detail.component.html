@@ -1,0 +1,155 @@
+
+<div class="p-10" *ngIf="!editMode">  
+  <!--Card 1-->
+  <div class="max-w-lg overflow-hidden bg-white rounded shadow-lg">
+    <div class="flex justify-between px-6 pt-4 pb-2">
+      <div class="mb-2 text-xl font-bold">{{product?.name}}</div>
+      <span (click)="editMode=true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+          <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32l8.4-8.4z" />
+          <path d="M5.25 5.25a3 3 0 00-3 3v10.5a3 3 0 003 3h10.5a3 3 0 003-3V13.5a.75.75 0 00-1.5 0v5.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5V8.25a1.5 1.5 0 011.5-1.5h5.25a.75.75 0 000-1.5H5.25z" />
+        </svg>
+      </span>
+    </div>
+    <img class="w-full" src="https://v1.tailwindcss.com/img/card-top.jpg" alt="Mountain">
+    <div class="px-6 py-4">
+      <p class="text-base text-gray-700">
+        {{ product?.description }}
+      </p>
+    </div>
+    <div class="flex justify-between px-6 pt-4 pb-2">
+      <span class="inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full">
+        € {{product?.price}}</span>
+      <span [ngClass]="{'bg-red-400': !product?.inStock, 'bg-green-400' : product?.inStock}"
+      class="inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 rounded-full">
+       {{ product?.inStock ? "lagernd" : "nicht lagernd"}}
+      </span>
+    </div>
+  </div>
+</div>
+
+
+<div class="block max-w-xl p-6 "  *ngIf="editMode">
+  <div class="p-4 bg-white rounded-lg shadow-lg">
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <h2>Produkt bearbeiten</h2>
+
+    <div class="mb-6 form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control block
+          w-full
+          px-3
+          py-1.5
+          text-base
+          font-normal
+          text-gray-700
+          bg-white bg-clip-padding
+          border border-solid border-gray-300
+          rounded
+          transition
+          ease-in-out
+          m-0
+          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" 
+          id="name" formControlName="name" name="name" required> 
+    </div>  
+
+    
+    <div class="mb-6 form-group">
+      <label for="description">Beschreibung</label>
+      <textarea class="
+          form-control
+          block
+          w-full
+          px-3
+          py-1.5
+          text-base
+          font-normal
+          text-gray-700
+          bg-white bg-clip-padding
+          border border-solid border-gray-300
+          rounded
+          transition
+          ease-in-out
+          m-0
+          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+          id="description" rows="8" 
+          formControlName="description" name="description" required>
+      </textarea>
+    </div>
+
+
+    <div class="mb-6 form-group">
+      <label for="price">Preis</label>
+      <input type="number" class="form-control block
+          w-1/2
+          px-3
+          py-1.5
+          text-base
+          font-normal
+          text-gray-700
+          bg-white bg-clip-padding
+          border border-solid border-gray-300
+          rounded
+          transition
+          ease-in-out
+          m-0
+          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" 
+          id="price" formControlName="price" name="price" required>
+    </div>
+        
+    <div class="mb-6 text-center form-group form-check">
+      <input type="checkbox"
+          class="w-4 h-4 mt-1 mr-2 align-top transition duration-200 bg-white bg-center bg-no-repeat bg-contain border border-gray-300 rounded-sm appearance-none cursor-pointer form-check-input checked:bg-blue-600 checked:border-blue-600 focus:outline-none"
+          id="inStock" name="inStock"   
+          formControlName="inStock" >
+      <label class="inline-block text-gray-800 form-check-label" 
+          for="inStock">Das Produkt ist lagernd</label>
+    </div>
+
+    <div class="flex justify-between">
+      <button type="submit" class="
+            w-1/2
+            px-6
+            py-2.5
+            bg-blue-600
+            text-black
+            font-medium
+            text-xs
+            leading-tight
+            uppercase
+            rounded
+            shadow-md
+            hover:bg-blue-700 hover:shadow-lg
+            focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
+            active:bg-blue-800 active:shadow-lg
+            transition
+            duration-150
+            ease-in-out" (click)="save()" [disabled]="!productForm.valid">
+            Update
+      </button>
+      <button type="submit" class="
+          w-1/2
+          px-6
+          py-2.5
+          bg-blue-600
+          text-black
+          font-medium
+          text-xs
+          leading-tight
+          uppercase
+          rounded
+          shadow-md
+          hover:bg-blue-700 hover:shadow-lg
+          focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
+          active:bg-blue-800 active:shadow-lg
+          transition
+          duration-150
+          ease-in-out" (click)="editMode=false">
+          Cancel
+      </button>
+    </div>
+  </form>
+  </div>  
+</div>
+
+

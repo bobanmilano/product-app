@@ -12,12 +12,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './components/register/register.component';
-import { ProductsComponent } from './components/products/products.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
-import { ButtonComponent } from './components/button/button.component';
-import { HeaderComponent } from './components/header/header.component';
-import { ProductItemComponent } from './components/product-item/product-item.component';
-import { AddProductComponent } from './components/add-product/add-product.component';
+import { ProductsComponent } from './components/products/products.component';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { MessagesComponent } from './messages/messages.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ProductSearchComponent } from './components/product-search/product-search.component';
+import { ProductFormComponent } from './components/product-form/product-form.component';
 
 @NgModule({
   declarations: [
@@ -25,10 +26,11 @@ import { AddProductComponent } from './components/add-product/add-product.compon
     LoginComponent,
     RegisterComponent,
     ProductsComponent,
-    ButtonComponent,
-    HeaderComponent,
-    ProductItemComponent,
-    AddProductComponent
+    ProductDetailComponent,
+    MessagesComponent,
+    DashboardComponent,
+    ProductSearchComponent,
+    ProductFormComponent
   ],
   imports: [
     BrowserModule,

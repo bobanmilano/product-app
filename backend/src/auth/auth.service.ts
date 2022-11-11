@@ -15,7 +15,6 @@ export class AuthService{
         private config: ConfigService){}
 
     async signup(dto: AuthDto) {
-        console.log("SIGNUP");
         const hash = await argon.hash(dto.password); //create password hash with argon
 
         try {
@@ -25,7 +24,7 @@ export class AuthService{
                     hash,
                 }
             });
-            return this.jwtToken(user.id, user.email);
+            return this.jwtToken(user.id, user.email, true);
         }catch (error) {
             if(error instanceof PrismaClientKnownRequestError) { //handle user already registered error
                 if (error.code === 'P2002') {  //prisma error code for "credentials taken" (https://www.prisma.io/docs/reference/api-reference/error-reference)
@@ -36,15 +35,12 @@ export class AuthService{
         }
     }
 
-    async signin(dto: AuthDto) {
+    async signin(dto: AuthDto, remember: boolean) {
         const user = await this.prismadbService.user.findUnique({
             where: {
                 email: dto.email,
             }
         });
-
-        console.log("SIGNIN");
-        console.log(dto);
 
         if(!user) throw new ForbiddenException('Unknown user');
 
@@ -54,10 +50,10 @@ export class AuthService{
             throw new ForbiddenException ( 'Password does not match');
         }
 
-        return this.jwtToken(user.id, user.email);
+        return this.jwtToken(user.id, user.email, remember);
     }
 
-    async jwtToken(id: number, email: string): Promise<{access_token: string}> {
+    async jwtToken(id: number, email: string, remember: boolean): Promise<{access_token: string}> {
         const data = {
             sub: id,
             email
@@ -65,9 +61,9 @@ export class AuthService{
         const secret = this.config.get('JWT_SECRET');
 
         const token = await this.jwt.signAsync(data, {
-            expiresIn: '120m',
+            expiresIn: remember == true ? '120m' : '10080m',
             secret: secret
-            });
+        });
 
         return {
             access_token: token,
