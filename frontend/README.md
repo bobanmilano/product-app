@@ -7,14 +7,18 @@ Verwendeter Technologiestack:
 Nach dem Clonen des repos:
 
 1.) npm packages installieren
+
     > yarn install
 
 2.) frontend starten
+
     > yarn start
 
-3.) Browser starten und http://localhost:4200 aufrufen
+3.) Browser starten und 
 
-4.) Neuen Benutzer anlegen
+  > http://localhost:4200 aufrufen
 
-5.) Produkte anlegen, bearbeiten, löschen, updaten usw
+4.) Neuen Benutzer registrieren und einloggen
+
+5.) Produkte anlegen, bearbeiten, löschen usw
  
