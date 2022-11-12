@@ -20,7 +20,7 @@ BACKEND:
   > ACHTUNG: migrationsskripte enthalten zum teil unix-commands, daher in einem UNIX terminal wie z.b. git bash oder auf einem unixbasierten system ausführen.
 
 
-    1.) pakete installieren
+    0.) pakete installieren
     
     1.) .env file erstellen und umgebungsvariablen setzen
 
@@ -54,18 +54,18 @@ BACKEND:
         - Tailwind CSS (styling)
   
   
-    1.) npm packages installieren
+    0.) npm packages installieren
 
         > yarn install
 
-    2.) frontend starten
+    1.) frontend starten
 
         > yarn start
 
-    3.) Browser starten und
+    2.) Browser starten und
 
         http://localhost:4200 aufrufen
 
-    4.) Neuen Benutzer registrieren
+    3.) Neuen Benutzer registrieren
 
-    5.) Produkte anlegen, bearbeiten, löschen usw
+    4.) Produkte anlegen, bearbeiten, löschen usw
