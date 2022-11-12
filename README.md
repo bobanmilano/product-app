@@ -3,7 +3,8 @@ vollständige demo-app bestehend aus backend und frontend. die app beinhaltet us
  
 BACKEND:
 
-  Techstack:
+
+    Techstack:
   
       NestJS
      
