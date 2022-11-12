@@ -1,6 +1,5 @@
 # product-app
-# vollständige demo-app bestehend aus backend und frontend. die app beinhaltet user-registrierung und eine einfache verwaltung von produkten. zweck der app ist die 
-# verwendung und das zusammenspiel der aktuell modernsten web-frameworks und technologien (JS-basiert) zu demonstrieren. 
+vollständige demo-app bestehend aus backend und frontend. die app beinhaltet user-registrierung und eine einfache verwaltung von produkten. zweck der app ist die verwendung und das zusammenspiel der aktuell modernsten web-frameworks und technologien (JS-basiert) zu demonstrieren. 
  
 BACKEND:
 
