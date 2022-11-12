@@ -1,6 +1,7 @@
 # product-app
-a full stack demo app showcasing current JS and TS framework like angular, nestjs, ..
-
+# vollständige demo-app bestehend aus backend und frontend. die app beinhaltet user-registrierung und eine einfache verwaltung von produkten. zweck der app ist die 
+# verwendung und das zusammenspiel der aktuell modernsten web-frameworks und technologien (JS-basiert) zu demonstrieren. 
+ 
 BACKEND:
 
   Techstack:
@@ -13,7 +14,7 @@ BACKEND:
       
       argon2+passport-jwt (token management),
       
-      class-validator (parameter validation)
+      class-validator (parameter validdierung)
 
 
   > ACHTUNG: migrationsskripte enthalten zum teil unix-commands, daher in einem UNIX terminal wie z.b. git bash oder auf einem unixbasierten system ausführen.
