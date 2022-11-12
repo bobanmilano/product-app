@@ -4,13 +4,19 @@ a full stack demo app showcasing current JS and TS framework like angular, nestj
 BACKEND:
 
   Techstack:
-      NestJS,
+      NestJS
+      
       postgres (docker container)
+      
       Prisma (Datensynchronisation, ORM, ...),
+      
       argon2+passport-jwt (token management),
+      
       class-validator (parameter validation)
 
+
   > ACHTUNG: migrationsskripte enthalten zum teil unix-commands, daher in einem UNIX terminal wie z.b. git bash oder auf einem unixbasierten system ausführen.
+
 
     1.) pakete installieren
     
