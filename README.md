@@ -4,8 +4,9 @@ a full stack demo app showcasing current JS and TS framework like angular, nestj
 BACKEND:
 
   Techstack:
+  
       NestJS
-      
+     
       postgres (docker container)
       
       Prisma (Datensynchronisation, ORM, ...),
@@ -46,8 +47,11 @@ BACKEND:
  FRONTEND:
  
     Techstack:
+    
         - Angular 13  (framework)
+        
         - Tailwind CSS (styling)
+  
   
     1.) npm packages installieren
 
