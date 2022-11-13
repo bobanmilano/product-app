@@ -18,7 +18,8 @@ import { ProductDetailComponent } from './components/product-detail/product-deta
 import { MessagesComponent } from './messages/messages.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProductSearchComponent } from './components/product-search/product-search.component';
-import { ProductFormComponent } from './components/product-form/product-form.component';
+import { FormComponent } from './components/forms/product-form/product-form.component';
+import { AuthComponent } from './components/forms/auth-form/auth-form.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ProductFormComponent } from './components/product-form/product-form.com
     MessagesComponent,
     DashboardComponent,
     ProductSearchComponent,
-    ProductFormComponent
+    FormComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,

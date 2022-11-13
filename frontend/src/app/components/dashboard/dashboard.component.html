@@ -2,7 +2,11 @@
   
   <div class="basis-2/5 sm:basis-5/5">
     <app-product-search></app-product-search>
-    <app-product-form (newProductEvent)="addNewProduct($event)"></app-product-form>
+      <div class="block w-full p-6">
+        <div class="p-4 bg-white rounded-lg shadow-md">
+          <app-form  [product]="" (newProductEvent)="addNewProduct($event)"></app-form>
+        </div>
+      </div>  
   </div>
   
   <div class="border-l-2 basis-3/5 sm:basis-5/5">

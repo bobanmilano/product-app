@@ -1,47 +1,29 @@
 import {Component, OnInit} from '@angular/core';
-import { FormControl, FormGroup, Validators} from '@angular/forms';
-import {HttpClient, HttpHeaderResponse, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Router} from '@angular/router';
-import { AuthInterceptor } from 'src/app/interceptors/auth.interceptor';
-import { TokenResponse } from 'src/app/models/response';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
-
+import { AuthUserDto } from 'src/app/models/dto/auth-user-dto';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
-  form!: FormGroup;
-  errorMessage!: string;
+export class RegisterComponent {
 
   constructor(
     private authService: AuthService,
-    private http: HttpClient,
     private router: Router,
     private tokenService: TokenStorageService
   ) {}
 
-  ngOnInit(): void {
-    this.form = new FormGroup({
-      email: new FormControl("", Validators.required),
-      password: new FormControl("", Validators.required),
-      remember: new FormControl("")
-    });
-  }
-
-  register() {
-    this.form.patchValue({remember: true});
-    if(this.form.valid) {
-      this.authService.signup(this.form).subscribe((response ) => {
+  register(authUserDto: AuthUserDto) {
+      this.authService.signup(authUserDto).subscribe((response ) => {
           if(response != null) {
             this.tokenService.saveToken(response.access_token);
             this.router.navigate(['dashboard'])
           }
       })
-    }
   }
 
 }

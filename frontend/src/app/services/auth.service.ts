@@ -8,6 +8,7 @@ import { TokenResponse } from '../models/response';
 import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import { TokenStorageService } from './token-storage.service';
+import { AuthUserDto } from '../models/dto/auth-user-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,7 @@ export class AuthService {
     private messageService: MessageService,
     private tokenStorage: TokenStorageService) { }
 
+    /*
   signup(data: FormGroup): Observable<any> {
     let url = baseUrl + '/auth/signup';
     let body = new URLSearchParams();
@@ -35,8 +37,8 @@ export class AuthService {
       tap(_ => this.log('signup')),
       catchError(this.handleError<any>('signup()'))
     );
-  }
-
+  }*/
+/*
   signin(data: FormGroup): Observable<any> {
     let url = baseUrl + '/auth/signin';
     let body = new URLSearchParams();
@@ -45,6 +47,43 @@ export class AuthService {
     body.set('email', data.get('email')?.value);
     body.set('password', password);
     body.set('remember', data.get("remember")?.value.toString());
+
+    let options = { headers:  new HttpHeaders({
+      "Content-Type": "application/x-www-form-urlencoded"
+    }) };
+
+   return this.http.post<TokenResponse>(url, body.toString(), options).pipe(
+    tap(_ => this.log('signup')),
+    catchError(this.handleError<any>('signin()')));
+  }
+*/
+signup(data: AuthUserDto): Observable<any> {
+  let url = baseUrl + '/auth/signup';
+  let body = new URLSearchParams();
+
+  let password = encodeURIComponent(data.password);
+  body.set('email', data.email);
+  body.set('password', password);
+  body.set('remember', data.remember.toString());
+  
+  let options = { headers:  new HttpHeaders({
+    "Content-Type": "application/x-www-form-urlencoded"
+  }) };
+
+  return this.http.post<TokenResponse>(url, body.toString(), options).pipe(
+    tap(_ => this.log('signup')),
+    catchError(this.handleError<any>('signup()'))
+  );
+}
+
+  signin(data: AuthUserDto): Observable<any> {
+    let url = baseUrl + '/auth/signin';
+    let body = new URLSearchParams();
+
+    let password = encodeURIComponent(data.password);
+    body.set('email', data.email);
+    body.set('password', password);
+    body.set('remember', data.remember.toString());
 
     let options = { headers:  new HttpHeaders({
       "Content-Type": "application/x-www-form-urlencoded"

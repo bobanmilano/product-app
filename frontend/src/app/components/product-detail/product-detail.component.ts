@@ -1,10 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Location } from '@angular/common';
 import { ProductService } from '../../services/product.service';
 import { Product } from 'src/app/models/product';
-import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
-import { FormBuilder } from '@angular/forms';
+import { ProductDto } from 'src/app/models/dto/create-product-dto';
 
 @Component({
   selector: 'app-product-detail',
@@ -15,23 +13,9 @@ export class ProductDetailComponent implements OnInit {
   product?: Product;
   editMode: false;
 
-  profileForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-  });
-
-  productForm = this.fb.group({
-    name: ['', Validators.required],
-    description:  ['', Validators.required],
-    price:  ['', Validators.required],
-    inStock:  ['', Validators.required]
-  });
-
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
-    private location: Location,
-    private fb: FormBuilder,
     private router: Router
   ) {}
 
@@ -43,41 +27,15 @@ export class ProductDetailComponent implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.productService.getProduct(id)
       .subscribe((result) => {
-        this.product = result, 
-        this.setProduct()
+        this.product = result
       });
   }
 
-  setProduct() {
-    this.productForm.setValue(
-      {
-        name: this.product.name,
-        description: this.product.description,
-        price: this.product.price,
-        inStock: this.product.inStock
-      }
-    )
-  }
-
-  save(): void {
-    if (this.product) {
-      this.product.name = this.productForm.controls["name"].value;
-      this.product.description = this.productForm.controls["description"].value;
-      this.product.price = this.productForm.controls["price"].value;
-      this.product.inStock = this.productForm.controls["inStock"].value;
-
-      this.productService.updateProduct(this.product)
-        .subscribe(() =>  this.router.navigate(["products"]));
-    }
-  }
-
-  goBack(): void {
-    this.location.back();
-  }
-
-  onSubmit() {
-    console.warn(this.productForm.value);
-    this.save();
+  update(product: ProductDto): void {
+      console.log("product detail - updating: ");
+      console.log(product);
+      this.productService.updateProduct(product)
+      .subscribe(() =>  this.router.navigate(["products"]));
   }
 
 }
