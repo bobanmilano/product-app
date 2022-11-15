@@ -13,6 +13,8 @@ ACHTUNG: migrationsskripte enthalten zum teil unix-commands, daher in einem UNIX
 
 0.) pakete installieren
 
+    > yarn install
+
 1.) .env file erstellen und umgebungsvariablen setzen
 
     > cp .env-example .env
