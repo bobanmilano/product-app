@@ -1,24 +1,22 @@
-Verwendeter Technologiestack:
+Techstack:
 
     - Angular 13  (framework)
-    - Tailwind CSS (styling)
     
+    - Tailwind CSS (styling)
 
-Nach dem Clonen des repos:
 
-1.) npm packages installieren
+0.) npm packages installieren
 
     > yarn install
 
-2.) frontend starten
+1.) frontend starten
 
     > yarn start
 
-3.) Browser starten und 
+2.) Browser starten und
 
-  > http://localhost:4200 aufrufen
+    http://localhost:4200 aufrufen
 
-4.) Neuen Benutzer registrieren und einloggen
+3.) Neuen Benutzer registrieren
 
-5.) Produkte anlegen, bearbeiten, löschen usw
- 
+4.) Produkte anlegen, bearbeiten, löschen usw
